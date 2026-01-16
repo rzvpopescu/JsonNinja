@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background circle (metallic dark gray) -->
+  <circle cx="256" cy="256" r="240" fill="#2d3748" />
+
+  <!-- Shuriken (4-pointed ninja star) -->
+  <g fill="#4a5568" stroke="#718096" stroke-width="8">
+    <!-- Top point -->
+    <path d="M256 40 L280 140 L380 140 L300 200 L320 300 L256 240 L192 300 L212 200 L132 140 L232 140 Z" />
+  </g>
+
+  <!-- Highlight on shuriken -->
+  <g fill="#718096" opacity="0.5">
+    <path d="M256 40 L265 100 L300 100 L256 40 Z" />
+  </g>
+
+  <!-- JSON Syntax Elements on the points -->
+  <!-- Top point: { -->
+  <text x="256" y="110" font-family="monospace" font-size="48" font-weight="bold" fill="#48bb78" text-anchor="middle">{</text>
+
+  <!-- Right point: } -->
+  <text x="400" y="265" font-family="monospace" font-size="48" font-weight="bold" fill="#48bb78" text-anchor="middle">}</text>
+
+  <!-- Bottom point: [ -->
+  <text x="256" y="430" font-family="monospace" font-size="48" font-weight="bold" fill="#48bb78" text-anchor="middle">[</text>
+
+  <!-- Left point: ] -->
+  <text x="112" y="265" font-family="monospace" font-size="48" font-weight="bold" fill="#48bb78" text-anchor="middle">]</text>
+
+  <!-- Center: : " (colon and quote for JSON key-value syntax) -->
+  <text x="256" y="275" font-family="monospace" font-size="36" font-weight="bold" fill="#ecc94b" text-anchor="middle">:</text>
+  <text x="280" y="255" font-family="monospace" font-size="36" font-weight="bold" fill="#48bb78" text-anchor="start">"</text>
+
+  <!-- Decorative ninja elements -->
+  <circle cx="256" cy="256" r="20" fill="#1a202c" stroke="#4a5568" stroke-width="4" />
+
+  <!-- Small accent dots (ninja throwing stars pattern) -->
+  <circle cx="160" cy="160" r="8" fill="#48bb78" />
+  <circle cx="352" cy="160" r="8" fill="#48bb78" />
+  <circle cx="352" cy="352" r="8" fill="#48bb78" />
+  <circle cx="160" cy="352" r="8" fill="#48bb78" />
+</svg>
