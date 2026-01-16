@@ -6,9 +6,7 @@
       <div class="flex items-center justify-between px-4 py-3">
         <div class="flex items-center gap-2">
           <!-- Ninja Star Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-700 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L9 9L2 12L9 15L12 22L15 15L22 12L15 9L12 2Z" />
-          </svg>
+          <img src="/icons/icon-32.png" alt="JsonNinja Icon" class="w-6 h-6">
           <h1 class="text-lg font-bold text-gray-800 dark:text-gray-100">
             Json<span class="text-blue-600 dark:text-blue-400">Ninja</span>
           </h1>
