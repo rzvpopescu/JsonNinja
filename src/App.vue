@@ -87,12 +87,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useJsonParser } from './composables/useJsonParser'
 import JsonInput from './components/JsonInput.vue'
 import JsonOutput from './components/JsonOutput.vue'
 import JsonTreeView from './components/JsonTreeView.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+
+const STORAGE_KEY = 'jsonNinja_inputText'
+const TAB_STORAGE_KEY = 'jsonNinja_activeTab'
 
 const activeTab = ref<'input' | 'formatted' | 'tree'>('input')
 const inputText = ref('')
@@ -100,6 +103,41 @@ const parseError = ref<string | null>(null)
 const parsedJson = ref<unknown>(null)
 
 const { parse } = useJsonParser()
+
+// Load saved data on mount
+onMounted(() => {
+  try {
+    const savedText = localStorage.getItem(STORAGE_KEY)
+    if (savedText) {
+      inputText.value = savedText
+    }
+    
+    const savedTab = localStorage.getItem(TAB_STORAGE_KEY) as 'input' | 'formatted' | 'tree' | null
+    if (savedTab && ['input', 'formatted', 'tree'].includes(savedTab)) {
+      activeTab.value = savedTab
+    }
+  } catch (error) {
+    console.error('Failed to load saved data:', error)
+  }
+})
+
+// Save input text to localStorage
+watch(inputText, (newValue) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, newValue)
+  } catch (error) {
+    console.error('Failed to save input text:', error)
+  }
+})
+
+// Save active tab to localStorage
+watch(activeTab, (newValue) => {
+  try {
+    localStorage.setItem(TAB_STORAGE_KEY, newValue)
+  } catch (error) {
+    console.error('Failed to save active tab:', error)
+  }
+})
 
 // Parse JSON on input change with debounce
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
@@ -114,5 +152,5 @@ watch(inputText, (newValue) => {
     parsedJson.value = result.data
     parseError.value = result.error
   }, 300)
-})
+}, { immediate: true })
 </script>

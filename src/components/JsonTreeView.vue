@@ -67,13 +67,7 @@ const jsonTypeLabel = computed(() => {
 })
 
 const toggleNode = (key: string) => {
-  if (expandedNodesMap.value[key]) {
-    delete expandedNodesMap.value[key]
-  } else {
-    expandedNodesMap.value[key] = true
-  }
-  // Force re-render by incrementing key
-  treeKey.value++
+  expandedNodesMap.value[key] = !expandedNodesMap.value[key]
 }
 
 const expandAll = () => {
@@ -91,7 +85,7 @@ const expandAll = () => {
       })
     } else {
       Object.keys(obj).forEach(key => {
-        const nodeKey = prefix ? `${prefix}.${key}` : key
+        const nodeKey = `${prefix}.${key}`
         nodes[nodeKey] = true
         const value = (obj as Record<string, unknown>)[key]
         if (value && typeof value === 'object') {
@@ -111,16 +105,19 @@ const collapseAll = () => {
   treeKey.value++
 }
 
-// Auto-expand all nodes when JSON changes
+// Auto-expand all nodes when JSON first loads
+let isInitialLoad = true
 watch(
   () => props.json,
-  (newJson) => {
-    if (newJson) {
+  (newJson, oldJson) => {
+    // Only auto-expand on initial load or when JSON changes from null/undefined
+    if (newJson && (isInitialLoad || !oldJson)) {
+      isInitialLoad = false
       // Small delay to ensure component is ready
       nextTick(() => {
         expandAll()
       })
-    } else {
+    } else if (!newJson) {
       collapseAll()
     }
   },

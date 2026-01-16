@@ -7,12 +7,15 @@ A powerful Chrome extension for parsing and formatting JSON with syntax highligh
 ## Features
 
 - **📧 Input Tab** - Paste or type raw JSON text with real-time validation
-- **📄 Formatted Tab** - View beautifully formatted JSON with syntax highlighting
+- **📄 Formatted Tab** - View beautifully formatted JSON with syntax highlighting and search
 - **🌳 Tree View Tab** - Interactive collapsible tree structure for exploring JSON
 - **🌓 Dark Mode** - Toggle between light and dark themes
 - **📋 One-Click Copy** - Copy formatted or minified JSON to clipboard
 - **🔍 Unescape Support** - Automatically detects and unescapes escaped JSON strings
 - **✅ Real-time Validation** - Get instant feedback with error messages and line numbers
+- **🔎 Search & Highlight** - Search and highlight text across formatted JSON
+- **💾 Auto-Save** - Automatically saves your JSON data and preferences
+- **🎯 Smart Tree View** - Primitive values shown inline, complex structures expandable
 
 ## Tech Stack
 
@@ -83,21 +86,26 @@ npm run generate-icons
 ### Features in Detail
 
 #### Input Tab
-- **Paste** button - Quick paste from clipboard
 - **Clear** button - Clear the input
 - **Unescape** button - Unescape escaped JSON strings (auto-detects)
 - Real-time validation with character count
+- Persistent storage - your JSON is automatically saved
 
 #### Formatted Tab
 - **Copy** button - Copy formatted JSON
 - **Minify/Format** toggle - Switch between formatted and compact view
+- **Search** - Find and highlight text in JSON with match counter
 - Syntax highlighting for strings, numbers, booleans, null, and keys
+- Real-time search highlighting in both formatted and minified views
 
 #### Tree View Tab
 - **Expand All** - Expand all branches
 - **Collapse All** - Collapse all branches
 - Click arrows to expand/collapse individual nodes
+- Primitive values (strings, numbers, booleans, null) displayed inline
+- Complex structures (objects, arrays) expandable with preview when collapsed
 - Color-coded values
+- Auto-expand on initial JSON load
 
 ## Icon Design
 
@@ -105,15 +113,6 @@ The JsonNinja icon features a stylized ninja throwing star (shuriken) with JSON 
 - 4 points containing `{ } [ ]` brackets
 - Center with `:` and `"` for JSON key-value syntax
 - Green accents representing JSON strings
-
-## Roadmap
-
-- [ ] Add JSONPath queries for filtering
-- [ ] JSON to TypeScript interface generation
-- [ ] Diff viewer for comparing JSON objects
-- [ ] Local storage history
-- [ ] Custom indentation options
-- [ ] Sort keys option
 
 ## Contributing
 
