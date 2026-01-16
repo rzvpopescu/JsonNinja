@@ -43,24 +43,42 @@
       </div>
     </div>
 
-    <!-- Textarea -->
-    <textarea
-      :value="modelValue"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-      placeholder="Paste or type your JSON here..."
-      class="flex-1 w-full p-4 text-sm font-mono bg-white dark:bg-dark-surface border-2 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors placeholder-gray-400 dark:placeholder-gray-600"
+    <!-- Textarea with Line Numbers -->
+    <div class="flex-1 flex overflow-hidden bg-white dark:bg-dark-surface border-2 rounded-lg"
       :class="[
         error
-          ? 'border-red-400 dark:border-red-500 text-red-900 dark:text-red-200'
-          : 'border-gray-200 dark:border-dark-border text-gray-800 dark:text-gray-200'
-      ]"
-      spellcheck="false"
-    ></textarea>
+          ? 'border-red-400 dark:border-red-500'
+          : 'border-gray-200 dark:border-dark-border'
+      ]">
+      <!-- Line Numbers (shown when there's an error) -->
+      <div
+        v-if="error"
+        class="flex-shrink-0 py-4 px-3 bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-dark-border select-none overflow-hidden"
+      >
+        <div class="text-sm font-mono text-gray-500 dark:text-gray-500 text-right leading-[1.5] whitespace-pre">{{ lineNumbers }}</div>
+      </div>
+      
+      <!-- Textarea -->
+      <textarea
+        ref="textareaRef"
+        :value="modelValue"
+        @input="handleInput"
+        @scroll="syncScroll"
+        placeholder="Paste or type your JSON here..."
+        class="flex-1 w-full p-4 text-sm font-mono bg-transparent resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors placeholder-gray-400 dark:placeholder-gray-600 border-0"
+        :class="[
+          error
+            ? 'text-red-900 dark:text-red-200'
+            : 'text-gray-800 dark:text-gray-200'
+        ]"
+        spellcheck="false"
+      ></textarea>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   modelValue: string
@@ -70,6 +88,22 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
+
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
+
+const handleInput = (event: Event) => {
+  emit('update:modelValue', (event.target as HTMLTextAreaElement).value)
+}
+
+const syncScroll = (event: Event) => {
+  // Line numbers scroll is handled by CSS
+}
+
+const lineNumbers = computed(() => {
+  if (!props.modelValue) return '1'
+  const lines = props.modelValue.split('\n').length
+  return Array.from({ length: lines }, (_, i) => i + 1).join('\n')
+})
 
 const characterCount = computed(() => props.modelValue.length)
 
