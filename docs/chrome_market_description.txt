@@ -1,0 +1,21 @@
+A powerful Chrome extension for parsing, formatting, and visualizing JSON data with an intuitive interface.
+
+KEY FEATURES:
+✓ Real-time JSON validation with error detection
+✓ Beautiful syntax highlighting for easy reading
+✓ Interactive tree view for exploring nested structures
+✓ Search and highlight across formatted JSON
+✓ One-click copy to clipboard
+✓ Minify/Format toggle
+✓ Dark mode support
+✓ Auto-save your work
+✓ Unescape JSON strings automatically
+✓ Line numbers for error tracking
+
+PERFECT FOR:
+- Developers working with APIs
+- Debugging JSON responses
+- Analyzing complex data structures
+- Quick JSON formatting and validation
+
+Simply paste your JSON and instantly see it beautifully formatted with syntax highlighting, or explore it visually with the interactive tree view.

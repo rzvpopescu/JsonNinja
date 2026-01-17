@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "JsonNinja",
+  "name": "Json Ninja",
   "version": "1.0.0",
   "description": "Parse and format JSON with syntax highlighting",
   "action": {
